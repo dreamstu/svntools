@@ -20,6 +20,7 @@ if [ $? -eq 0 ]; then #1
 	svn cp -m "$memo" $svn_trunk_prefix/$projectname $svn_branch_prefix/$projectname/$branchname/$projectname
 	if [ $? -eq 0 ]; then #2
 		echo -e '\n创建分支成功，是否需要checkout【yes(y)/no(n)】?'
+		current_branch_address=$svn_branch_prefix/$projectname/$branchname/$projectname
 		read co
 		case $co in
 			yes|y)
@@ -29,7 +30,7 @@ if [ $? -eq 0 ]; then #1
 					mkdir "$dir"
 				fi
 				#切换到目录，并checkout文件
-				cd $dir && svn co $svn_branch_prefix/$projectname/$branchname/$projectname
+				cd $dir && svn co $current_branch_address
 				if [ $? -eq 0 ]; then #3
 					echo -e '\ncheckout完毕！'
 					echo -e '\n任务执行完毕！'
@@ -39,6 +40,8 @@ if [ $? -eq 0 ]; then #1
 			 ;;
 	 		no|n)
 				echo -e '\n放弃checkout。'
+				echo -e '\n本次创建的分支地址：'$current_branch_address
+				echo -e '\n任务执行完毕！'
 			 ;;
 			*)
  			 ;;
