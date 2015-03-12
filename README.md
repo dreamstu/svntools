@@ -33,4 +33,4 @@ svntools is a tool for the svn. It can help you quickly create a branch,and chec
 
 ## License
 
-svnco&branch.sh is available under the terms of the MIT License.
+svntools is available under the terms of the MIT License.
